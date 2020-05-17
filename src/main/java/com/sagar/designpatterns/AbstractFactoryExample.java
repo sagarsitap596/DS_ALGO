@@ -15,7 +15,13 @@ package com.sagar.designpatterns;
 public class AbstractFactoryExample {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		CreditCardFactory visaFactory = CreditCardFactory.getCreditCardFactory(CreditCardFactoryType.VISA);
+
+		CreditCard crdCard = (VisaGoldCreditCard) visaFactory.getCreditCard(CreditCardType.GOLD);
+
+		CreditCardFactory mastercCardFactory = CreditCardFactory.getCreditCardFactory(CreditCardFactoryType.MASTERCARD);
+
+		CreditCard crdCard2 = (VisaGoldCreditCard) mastercCardFactory.getCreditCard(CreditCardType.PLATINIUM);
 
 	}
 
