@@ -5,13 +5,13 @@ import java.util.concurrent.CyclicBarrier;
 
 /**
  * 
- * In below example Two Threads waits at barries 1 and once both threads arrives
+ * In below example Two Threads waits at barrier 1 and once both threads arrives
  * barrier1Action is executed and then both threads are resumed.
  * 
- * Then again , bith Threads waits at barries 2 and once both threads arrives
+ * Then again , both Threads waits at barrier 2 and once both threads arrives
  * barrier2Action is executed and then both threads are resumed.
  * 
- * Then again, Threads waits at barries 1 and once both threads arrives
+ * Then again, Threads waits at barrier 1 and once both threads arrives
  * barrier1Action is executed and then both threads are resumed. ------ This
  * shows we can reuse same barrier
  * 

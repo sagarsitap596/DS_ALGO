@@ -33,10 +33,10 @@ public class PhaserExample {
             public void run() {
                 try {
                     
-//                    Thread.sleep(sleepTime);
-//                    System.out.println(Thread.currentThread().getName() + " arrived");
-//                    phaser.arriveAndAwaitAdvance();// threads register arrival to the phaser.
-//                    System.out.println(Thread.currentThread().getName() + " after passing barrier");
+                    Thread.sleep(sleepTime);
+                    System.out.println(Thread.currentThread().getName() + " arrived");
+                    phaser.arriveAndAwaitAdvance();// threads register arrival to the phaser.
+                    System.out.println(Thread.currentThread().getName() + " after passing barrier");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

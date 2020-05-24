@@ -6,7 +6,7 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 /**
- * Function Takes sinput and return output. SUed in map()
+ * Function Takes input and return output. Used in map()
  * 
  * https://www.javabrahman.com/java-8/function-descriptors-java-8-explained/
  * 
@@ -36,7 +36,7 @@ public class FunctionExample {
 		Function<String, Integer> covertToIntegerAndSquare = convertToInteger.andThen(findSquare);
 
 		/**
-		 * compose applies getInteger first and then findSquare
+		 * compose applies convertToInteger first and then findSquare
 		 */
 		Function<String, Integer> covertToIntegerAndSquare2 = findSquare.compose(convertToInteger);
 

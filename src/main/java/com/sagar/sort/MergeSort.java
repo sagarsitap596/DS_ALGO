@@ -1,80 +1,59 @@
 package com.sagar.sort;
 
+import java.util.Arrays;
+
 /***
  * 
- * @author sitapsha
- * 
- * 
- * 
- *         As merge sort is a recursive algorithm, the time complexity can be
- *         expressed as the following recursive relation: T(n) = 2T(n/2) +
- *         O(n)<br>
- *         2T(n/2) corresponds to the time required to sort the sub-arrays and
- *         O(n) time to merge the entire array. When solved, the time complexity
- *         will come to O(nLogn).<br>
- *         This is true for the worst, average and best case since it will
- *         always divide the array into two and then merge. The space complexity
- *         of the algorithm is O(n) as we're creating temporary arrays in every
- *         recursive call.
+ * The time complexity is O(nLogn) in all good, avg and worst cases.<br>
+ * The space complexity of the algorithm is O(n) as we're creating temporary
+ * arrays in every recursive call.
  *
  */
 public class MergeSort {
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 
-        int[] arr = new int[] { 3, 7, 2, 5, 2, 7, 4, 8, 5, 9, 7, 9, 10 }; // 13 >> 12
-        mergeSort(arr);
+		int[] arr = new int[] { 3, 7, 2, 5, 2, 7, 4, 8, 5, 9, 7, 9, 10 }; // 13 >> 12
+		mergeSort(arr);
 
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + "  ");
-        }
-    }
+		for (int i = 0; i < arr.length; i++) {
+			System.out.print(arr[i] + "  ");
+		}
+	}
 
-    public static void mergeSort(int[] a) {
+	public static void mergeSort(int[] a) {
+		if (a.length > 1) {
+			int mid = a.length / 2;
+			int[] l = new int[mid];
+			int[] r = new int[a.length - mid];
 
-        int n = a.length;
+			// fill left array
+			for (int i = 0; i < mid; i++) {
+				l[i] = a[i];
+			}
+			for (int j = mid; j < a.length; j++) {
+				r[j - mid] = a[j];
+			}
+			mergeSort(l);
+			mergeSort(r);
 
-        if (n < 2) {
-            return;
-        }
-        int mid = n / 2;
-        int[] l = new int[mid]; // left array size
-        int[] r = new int[n - mid]; // remaining size will be right array size
+			int i = 0; // left array counter
+			int j = 0; // right array counter
+			int k = 0; // original/input array array counter
 
-        for (int i = 0; i < mid; i++) {
-            l[i] = a[i];
-        }
-
-        // Without using j
-//        for (int i = mid; i < n; i++) {
-//            r[i - mid] = a[i];
-//        }
-
-        for (int j = 0, i = mid; i < n; i++, j++) {
-            r[j] = a[i];
-        }
-
-        mergeSort(l);
-        mergeSort(r);
-
-        merge(a, l, r, mid, n - mid);
-    }
-
-    public static void merge(int[] a, int[] l, int[] r, int left_size, int right_size) {
-
-        int i = 0, j = 0, k = 0;
-        while (i < left_size && j < right_size) {
-            if (l[i] <= r[j]) {
-                a[k++] = l[i++];
-            } else {
-                a[k++] = r[j++];
-            }
-        }
-        while (i < left_size) {
-            a[k++] = l[i++];
-        }
-        while (j < right_size) {
-            a[k++] = r[j++];
-        }
-    }
+			while (i < l.length && j < r.length) {
+				if (l[i] <= r[j]) {
+					a[k++] = l[i++];
+				} else {
+					a[k++] = r[j++];
+				}
+			}
+			while (i < l.length) {
+				a[k++] = l[i++];
+			}
+			while (j < r.length) {
+				a[k++] = r[j++];
+			}
+		}
+	}
 }

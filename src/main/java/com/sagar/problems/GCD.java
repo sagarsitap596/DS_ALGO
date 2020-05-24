@@ -8,30 +8,37 @@ package com.sagar.problems;
  */
 public class GCD {
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 
-        int arr[] = { 56, 4, 8, 24, 56 };
+		int arr[] = { 4, 56, 8, 24, 56 };
+		
+//		int arr[] = { 60,96 };
+//		
+//		int arr[] = { 20,8 };
 
-        int gcd = arr[0];
+		int gcd = arr[0];
 
-        for (int j = 1; j < arr.length; j++) {
-            gcd = gcd(gcd, arr[j]);
-        }
+		for (int j = 1; j < arr.length; j++) {
+			gcd = gcd(gcd, arr[j]);
+		}
 
-        System.out.println(gcd);
-    }
-    
-//    public static int findGCD(int[] arr,int k) {
-//        
-//    }
+		System.out.println(gcd);
+	}
 
-    public static int gcd(int n1, int n2) {
-        int remainder;
-        while (n1 > 0) {
-            remainder = n2 % n1;
-            n2 = n1;
-            n1 = remainder;
-        }
-        return n2;
-    }
+	/**
+	 * 
+	 * Euclid algo divide a / b. a=b b=remainder
+	 * 
+	 * Till remainder is zero.
+	 * 
+	 */
+	public static int gcd(int a, int b) {
+		int remainder;
+		while (b > 0) {
+			remainder = a % b;
+			a = b;
+			b = remainder;
+		}
+		return a;
+	}
 }
