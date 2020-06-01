@@ -24,9 +24,6 @@ public class SupplierExample {
 		Supplier<Date> dateSupplier = SupplierExample::getSystemDate;
 		Date systemDate = dateSupplier.get();
 		System.out.println("systemDate->" + systemDate);
-		
-		
-		
 	}
 
 	public static Date getSystemDate() {
