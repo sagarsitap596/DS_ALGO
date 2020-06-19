@@ -1,6 +1,7 @@
 package com.sagar.datastructures;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 
@@ -72,9 +73,6 @@ public class CircularQueue {
 		cq.dequeue();
 		cq.dequeue();
 		cq.enqueue("f");
-
-		System.out.println(cq);
-
 	}
 
 	@Override

@@ -3,8 +3,6 @@ package com.sagar.datastructures;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.j256.ormlite.stmt.query.In;
-
 /**
  * https://www.youtube.com/watch?v=W81Qzuz4qH0
  * 
@@ -55,6 +53,8 @@ public class Heap {
 	private void heapifyUp(int index) {
 		int parent = (index - 1) / 2;
 
+		// since heap was alreay max heap so existing chil is less than parent.
+		// we just check new node is greater than parent or not
 		if (parent >= 0 && list.get(parent) < list.get(index)) {
 			Integer temp = list.get(parent);
 			list.set(parent, list.get(index));
@@ -95,7 +95,6 @@ public class Heap {
 
 	public void print() {
 		int height = height(0);
-		double maxNodes = Math.pow(2, height);
 		int count = 0;
 		for (int i = 0; i <= height; i++) {
 			for (double j = Math.pow(2, height - i); j >= 0; j--) {

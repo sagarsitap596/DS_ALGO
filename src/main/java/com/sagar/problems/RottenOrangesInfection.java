@@ -39,6 +39,7 @@ public class RottenOrangesInfection {
         /**
          * Add all rotten orange index in queue. maintain Map that has count/every
          * Minute/iteration/ against each rotten index;
+         * i.e min at wich that orange got rotten.
          */
         Queue<Index> rottenOrangeIndex = new ArrayDeque<Index>();
         Map<Index, Integer> count = new HashMap<Index, Integer>();
