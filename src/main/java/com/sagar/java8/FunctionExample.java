@@ -16,7 +16,6 @@ import java.util.function.Function;
 public class FunctionExample {
 
 	public static void main(String[] args) {
-
 		/**
 		 * Function <input data type, output data type>
 		 */
@@ -31,7 +30,7 @@ public class FunctionExample {
 		Function<String, String> appendZero = s -> s + "0";
 
 		/*
-		 * andThen applies getInteger first and then findSquare
+		 * andThen applies convertToInteger first and then findSquare
 		 */
 		Function<String, Integer> covertToIntegerAndSquare = convertToInteger.andThen(findSquare);
 
@@ -54,6 +53,9 @@ public class FunctionExample {
 
 		numbers.stream().map(Function.identity()).forEach(System.out::println);
 		System.out.println("==============================================");
+		
+		
+		
 		// BiFunction
 
 		BiFunction<String, String, Integer> appendAndConvertToInteger = (s1, s2) -> Integer.parseInt(s1 + s2);

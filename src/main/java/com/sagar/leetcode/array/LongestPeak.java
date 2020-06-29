@@ -1,4 +1,4 @@
-package com.sagar.leetcode;
+package com.sagar.leetcode.array;
 
 import java.util.Iterator;
 import java.util.Map;

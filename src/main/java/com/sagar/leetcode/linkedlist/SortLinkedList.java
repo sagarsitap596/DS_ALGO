@@ -1,4 +1,4 @@
-package com.sagar.leetcode;
+package com.sagar.leetcode.linkedlist;
 
 public class SortLinkedList {
 

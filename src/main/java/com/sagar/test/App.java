@@ -19,21 +19,34 @@ public class App {
 		};
 
 		Runnable r2 = () -> {
-			Iterator<Entry<Integer, Integer>> it = m.entrySet().iterator();
+			Iterator<Integer> it = m.keySet().iterator();
 
-			
 			while (it.hasNext()) {
-				System.out.println(m.size());
-				System.out.println(it.next());
+				System.out.println("Size :" + m.size());
+				System.out.println(m.get(it.next()));
 				System.out.println("======");
 				it.remove();
 			}
 
-			System.out.println(m.size());
+			System.out.println("Final Size :" + m.size());
 		};
 
 		new Thread(r1).start();
 		new Thread(r2).start();
 	}
 
+}
+
+class A{
+	
+	private void show() {
+		System.out.println("asdadad");
+	}
+}
+
+class B extends A{
+	
+	private void show1() {
+		this.s
+	}
 }
