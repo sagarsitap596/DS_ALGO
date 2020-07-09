@@ -1,4 +1,6 @@
-package com.sagar.problems;
+package com.sagar.recursion;
+
+import java.util.ArrayList;
 
 /**
  * 
@@ -17,6 +19,7 @@ package com.sagar.problems;
 public class RecursionExample {
 
 	public static void main(String[] args) {
+
 		countDown(4);
 		System.out.println("===========================");
 		System.out.println(power(2, 4));
@@ -29,7 +32,7 @@ public class RecursionExample {
 
 		System.out.println("===========================");
 		// a -> b -> c
-		// o/p =  c -> b -> a
+		// o/p = c -> b -> a
 		Node n3 = new Node();
 		n3.data = "c";
 		n3.next = null;

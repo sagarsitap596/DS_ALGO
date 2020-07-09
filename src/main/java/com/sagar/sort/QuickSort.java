@@ -2,7 +2,7 @@ package com.sagar.sort;
 
 /**
  * best and avg time complexity is O(N Log N). Worst case is O(N ^ 2).
- * Memory complexity is O(log N)
+ * Space complexity is in all cases is O(log N)
  * 
  *
  */
@@ -18,41 +18,43 @@ public class QuickSort {
 
 	}
 
-	private static void quickSort(int[] arr, int first, int last) {
-		if (first < last) {
-			int splitIndex = getSplitIndex(arr, first, last);
-			quickSort(arr, first, splitIndex - 1);
-			quickSort(arr, splitIndex + 1, last);
+	private static void quickSort(int[] arr, int start, int end) {
+		if (start < end) {
+			int splitIndex = getSplitIndex(arr, start, end);
+			boolean isLeftArraySmaller = splitIndex - 1 - start < end - splitIndex + 1;
+			if (isLeftArraySmaller) {
+				quickSort(arr, start, splitIndex - 1);
+				quickSort(arr, splitIndex + 1, end);
+			} else {
+				quickSort(arr, splitIndex + 1, end);
+				quickSort(arr, start, splitIndex - 1);
+			}
 		}
 	}
 
-	private static int getSplitIndex(int[] arr, int first, int last) {
-		int lower = first + 1;
-		int upper = last;
-		int pivot = arr[first];
-		while (lower < upper) {
-			// advance lower while pivot is greater
-			while (lower < upper && arr[lower] <= pivot) {
-				lower++;
-			}
+	private static int getSplitIndex(int[] array, int start, int end) {
+		int pivot = array[start];
+		int left = start + 1;
+		int right = end;
 
-			// advance upper while pivot is less
-			while (upper > lower && arr[upper] >= pivot) {
-				upper--;
+		while (left <= right) {
+			if (array[left] > pivot && array[right] < pivot) {
+				int temp = array[left];
+				array[left] = array[right];
+				array[right] = temp;
+				// continue; This can also work
 			}
-
-			if (lower > upper) {
-				break;
-			} else {
-				int temp = arr[lower];
-				arr[lower] = arr[upper];
-				arr[upper] = temp;
+			if (array[left] <= pivot) {
+				left++;
+			}
+			if (array[right] >= pivot) {
+				right--;
 			}
 		}
 
-		arr[first] = arr[upper];
-		arr[upper] = pivot;
-		return upper;
+		array[start] = array[right];
+		array[right] = pivot;
+		return right;
 	}
 
 }

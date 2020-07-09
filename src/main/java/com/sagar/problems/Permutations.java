@@ -1,38 +1,35 @@
 package com.sagar.problems;
 
-import java.util.Arrays;
 import java.util.stream.Stream;
 
 public class Permutations {
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 
-        String text = "abcd";
+		String text = "abc";
 
-        permute(text.split(""), 0);
+		permute(text.split(""), 0);
 
-    }
+	}
 
-    public static void permute(String[] txt, int fixIndex) {
+	public static void permute(String[] array, int indexToBeFixed) {
 
-        if (fixIndex == txt.length) {
-            Stream.of(txt).forEach(s -> System.out.print(s));
-            System.out.println();
-        } else {
-//            System.out.println(Arrays.toString(txt)+" : Fixing : " + fixIndex);
-            for (int i = fixIndex; i < txt.length; i++) {
-                swap(txt, i, fixIndex);
-                permute(txt, fixIndex + 1);
-                swap(txt, i, fixIndex);
-            }
-        }
-    }
+		if (indexToBeFixed == array.length - 1) {
+			Stream.of(array).forEach(s -> System.out.print(s));
+			System.out.println();
+		}
+		for (int i = indexToBeFixed; i < array.length; i++) {
+			swap(array, indexToBeFixed, i);
+			permute(array, indexToBeFixed + 1);
+			swap(array, indexToBeFixed, i);
+		}
 
-    private static void swap(String[] txt, int i, int fixIndex) {
-        String temp = txt[i];
-        txt[i] = txt[fixIndex];
-        txt[fixIndex] = temp;
+	}
 
-    }
+	private static void swap(String[] array, int index, int i) {
+		String temp = array[index];
+		array[index] = array[i];
+		array[i] = temp;
+	}
 
 }

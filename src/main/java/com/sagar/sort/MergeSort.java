@@ -5,19 +5,22 @@ import java.util.Arrays;
 /***
  * 
  * The time complexity is O(nLogn) in all good, avg and worst cases.<br>
- * The space complexity of the algorithm is O(n) as we're creating temporary
- * arrays in every recursive call.
+ * The space complexity of the algorithm is O(n logn) as we're creating
+ * temporary. Since at all levels( log n levels) array of size n is created. So
+ * its n * log n arrays in every recursive call.
  *
  */
 public class MergeSort {
 
 	public static void main(String[] args) {
 
-		int[] arr = new int[] { 3, 7, 2, 5, 2, 7, 4, 8, 5, 9, 7, 9, 10 }; // 13 >> 12
-		mergeSort(arr);
+		int[] main = new int[] { 3, 7, 2, 5, 2, 7, 4, 8, 5, 9, 7, 9, 10 }; // 13 >> 12
+		int[] aux = main.clone();
 
-		for (int i = 0; i < arr.length; i++) {
-			System.out.print(arr[i] + "  ");
+		mergeSort2(main, aux, 0, main.length - 1);
+
+		for (int i = 0; i < main.length; i++) {
+			System.out.print(main[i] + "  ");
 		}
 	}
 
@@ -55,5 +58,43 @@ public class MergeSort {
 				a[k++] = r[j++];
 			}
 		}
+	}
+
+	private static void mergeSort2(int[] main, int[] aux, int start, int end) {
+
+		System.out.println(start + " -- " + end);
+		if (start == end)
+			return;
+
+		int mid = (start + end) / 2;
+
+		mergeSort2(aux, main, start, mid);
+		mergeSort2(aux, main, mid + 1, end);
+		
+		int i = start;
+		int j = mid + 1;
+		int k = start;
+		while (i <= mid && j <= end) {
+			if (aux[i] <= aux[j]) { // consider main array as new array and directly substitute values in that.
+				main[k] = aux[i];
+				i++;
+			} else {
+				main[k] = aux[j];
+				j++;
+			}
+			k++;
+
+		}
+		while (j <= end) {
+			main[k] = aux[j];
+			k++;
+			j++;
+		}
+		while (i <= mid) {
+			main[k] = aux[i];
+			k++;
+			i++;
+		}
+
 	}
 }

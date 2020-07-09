@@ -14,7 +14,7 @@ public class MaxSubArraySum {
 
 		for (int i = 0; i < array.length; i++) {
 			sum = sum + array[i];
-			// if number iteself is greated than the sum than. use that number as individual
+			// if number itself is greater than the sum than. use that number as individual
 			// candidate and start fresh from that number again
 			if (array[i] > sum) {
 				sum = array[i];
