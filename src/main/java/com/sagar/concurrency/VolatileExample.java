@@ -38,8 +38,6 @@ class Thread2 extends Thread {
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-		super.run();
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {

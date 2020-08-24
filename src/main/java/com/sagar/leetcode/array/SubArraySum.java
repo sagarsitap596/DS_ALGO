@@ -16,7 +16,7 @@ public class SubArraySum {
 		int t = subarraySum(new int[] { 9, 6, 0, 0, 10, 5 }, 15);// [9,6],[9,6,0],[9,6,0,0],[0,0,10,5],[0,10, 5],[]10, 5
 		System.out.println(t);
 
-		uniquePairSumInUnsortedArray(new int[] { 9, 6, 0, 0, 21, 10, 5, 9, 10, 6, -6 }, 15);
+		uniquePairSumInUnsortedArray(new int[] { 1, 5, 1, 5 }, 6);
 
 	}
 
@@ -78,14 +78,11 @@ public class SubArraySum {
 
 		HashSet<Integer> encountered = new HashSet<>();
 
-		for (int i = 0; i < nums.length; i++) {
-
-			if (encountered.contains(target - nums[i])) {
-				if (!encountered.contains(nums[i])) {
-					System.out.println("[ " + nums[i] + " , " + (target - nums[i]) + " ]");
-				}
+		for (int num : nums) {
+			if (!encountered.contains(num) && encountered.contains(target - num)) {
+				System.out.println("[ " + nums + " , " + (target - num) + " ]");
 			}
-			encountered.add(nums[i]);
+			encountered.add(num);
 		}
 	}
 

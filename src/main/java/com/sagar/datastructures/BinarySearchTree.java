@@ -1,14 +1,12 @@
 package com.sagar.datastructures;
 
-import com.j256.ormlite.stmt.query.In;
-
 public class BinarySearchTree {
 	public static void main(String[] args) {
 		BTSNode root = new BTSNode(5);
-		root.insert(2);
-		root.insert(7);
-		root.insert(4);
-		root.insert(6);
+		root.insertIterative(2);
+		root.insertIterative(7);
+		root.insertIterative(4);
+		root.insertIterative(6);
 
 		System.out.println("===================");
 		root.printInOrder();// 2 4 5 6 7
@@ -32,6 +30,7 @@ class BTSNode {
 
 	/**
 	 * O(log N)
+	 * 
 	 * @param data
 	 */
 	public void insert(Integer data) {
@@ -50,8 +49,28 @@ class BTSNode {
 		}
 	}
 
+	public void insertIterative(Integer data) {
+		BTSNode curr = this;
+		while (curr != null) {
+			if (data <= curr.data) {
+				if (curr.left == null) {
+					curr.left = new BTSNode(data);
+					break;
+				}
+				curr = curr.left;
+			} else {
+				if (curr.right == null) {
+					curr.right = new BTSNode(data);
+					break;
+				}
+				curr = curr.right;
+			}
+		}
+	}
+
 	/**
-	 *  O(log N)
+	 * O(log N)
+	 * 
 	 * @param data
 	 * @return
 	 */
@@ -74,11 +93,9 @@ class BTSNode {
 	}
 
 	/*
-	 * Node to be deleted is leaf.<br>
-	 * Node to be deleted has only one child.<br>
-	 * Node to be deleted has two children.
-	 * O(log N).
-	 * If tree is not balanced (which is in a way linked list)then its O(N) 
+	 * Node to be deleted is leaf.<br> Node to be deleted has only one child.<br>
+	 * Node to be deleted has two children. O(log N). If tree is not balanced (which
+	 * is in a way linked list)then its O(N)
 	 */
 	public BTSNode delete(Integer val, BTSNode root) {
 
@@ -115,6 +132,63 @@ class BTSNode {
 
 	}
 
+	public BTSNode remove(int data) {
+		// Write your code here.
+		if (this.data == data && this.left == null && this.right == null)
+			return this;
+		BTSNode prev = null;
+		BTSNode current = this;
+		while (current != null) {
+			if (data < current.data) {
+				prev = current;
+				current = current.left;
+			} else if (data > current.data) {
+				prev = current;
+				current = current.right;
+			} else {
+				break;
+			}
+		}
+		if (current != null) {
+			BTSNode node = null;
+			if (current.right == null) {
+				node = current.left;
+			} else if (current.left == null) {
+				node = current.right;
+			} else {
+				BTSNode smallestRight = removeSmallest(current.right);
+				if (smallestRight.data != current.right.data) {
+					smallestRight.right = current.right;
+				}
+				smallestRight.left = current.left;
+				node = smallestRight;
+			}
+			if (prev == null) {
+				this.data = node.data;
+				this.left = node.left;
+				this.right = node.right;
+			} else if (current.data < prev.data) {
+				prev.left = node;
+			} else {
+				prev.right = node;
+			}
+		}
+		return this;
+	}
+
+	private static BTSNode removeSmallest(BTSNode node) {
+		if (node.left == null)
+			return node;
+
+		BTSNode prev = null;
+		while (node.left != null) {
+			prev = node;
+			node = node.left;
+		}
+		prev.left = null;
+		return node;
+	}
+
 	private Integer max(BTSNode node) {
 		if (node.right == null) {
 			return node.data;
@@ -124,9 +198,8 @@ class BTSNode {
 	}
 
 	/**
-	 * 1. Go left if present
-	 * 2. If left id null, print current node
-	 * 3. go right and follow step 1
+	 * 1. Go left if present 2. If left id null, print current node 3. go right and
+	 * follow step 1
 	 */
 	public void printInOrder() {
 		if (left != null) {
