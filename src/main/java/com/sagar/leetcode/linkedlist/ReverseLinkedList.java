@@ -5,9 +5,26 @@ public class ReverseLinkedList {
 	public static void main(String[] args) {
 		// a -> b -> c
 		// o/p = c -> b -> a
+
+		Node n7 = new Node();
+		n7.data = "g";
+		n7.next = null;
+
+		Node n6 = new Node();
+		n6.data = "f";
+		n6.next = n7;
+
+		Node n5 = new Node();
+		n5.data = "e";
+		n5.next = n6;
+
+		Node n4 = new Node();
+		n4.data = "d";
+		n4.next = n5;
+
 		Node n3 = new Node();
 		n3.data = "c";
-		n3.next = null;
+		n3.next = n4;
 
 		Node n2 = new Node();
 		n2.data = "b";
@@ -18,7 +35,8 @@ public class ReverseLinkedList {
 		n1.next = n2;
 		Node head = n1;
 		print(head);
-		head = reverseRecursively(head);
+		head = reverseKElementsAtATime(head, 3);
+//		head = reverseRecursively(head);
 		// head = reverseIterative(head);
 		print(head);
 	}
@@ -68,6 +86,55 @@ public class ReverseLinkedList {
 		head.next.next = head;
 		head.next = null;
 		return n;
+	}
+
+	private static Node reverseKElementsAtATime(Node head, int k) {
+		Node current = head;
+		Node startNode = head;
+		Node prev = null;
+		Node newHead = head;
+		int count = 1;
+		while (count < k) {
+			newHead = newHead.next;
+			count++;
+		}
+
+		count = 1;
+		while (current != null) {
+			if (count == 1) {
+				startNode = current;
+			}
+			if (count == k) {
+				current = current.next;
+				reverseLinkedList(startNode, prev, current, k);
+				prev = startNode;
+				count = 1;
+				continue;
+			}
+			count++;
+			current = current.next;
+		}
+		return newHead;
+
+	}
+
+	private static void reverseLinkedList(Node startNode, Node leftBound, Node rightBound, int k) {
+
+		Node prev = null;
+		Node current = startNode;
+		Node next = null;
+
+		while (k > 0) {
+			next = current.next;
+			current.next = prev;
+			prev = current;
+			current = next;
+			k--;
+		}
+		if (leftBound != null)
+			leftBound.next = prev;
+
+		startNode.next = rightBound;
 	}
 
 	static class Node {
