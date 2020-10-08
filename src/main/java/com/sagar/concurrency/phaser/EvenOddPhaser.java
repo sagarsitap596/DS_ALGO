@@ -14,35 +14,38 @@ public class EvenOddPhaser {
                 System.out.println(i);
 //                phaser.arriveAndAwaitAdvance();
 //                phaser.arriveAndAwaitAdvance();
-                System.out.println("Current phase : "+phaser.getPhase());
-                int phase = phaser.arrive();
-                System.out.println("Even1 phase : "+phase);
-                System.out.println("Current phase : "+phaser.getPhase());
-                System.out.println("Current phase : "+phaser.getPhase());
-                phaser.awaitAdvance(30);
-                phase = phaser.arrive();
-                System.out.println("Even2 phase : "+phase);
-                phaser.awaitAdvance(phase);
+//                System.out.println("Current phase : "+phaser.getPhase());
+//                int phase = phaser.arrive();
+//                System.out.println("Even1 phase : "+phase);
+//                System.out.println("Current phase : "+phaser.getPhase());
+//                System.out.println("Current phase : "+phaser.getPhase());
+//                phaser.awaitAdvance(phase);
+                phaser.arriveAndAwaitAdvance();
+                phaser.arriveAndAwaitAdvance();
+//                phase = phaser.arrive();
+//                System.out.println("Even2 phase : "+phase);
+//                phaser.awaitAdvance(phase);
             }
         };
 
         Runnable odd = () -> {
             phaser.register();
             for (int i = 1; i < 20; i += 2) {
-//                phaser.arriveAndAwaitAdvance();
-                int phase = phaser.arrive();
-                System.out.println("Odd1 phase : " + phase);
-                phaser.awaitAdvance(phase);
+                phaser.arriveAndAwaitAdvance();
+//                int phase = phaser.arrive();
+//                System.out.println("Odd1 phase : " + phase);
+//                phaser.awaitAdvance(phase);
                 System.out.println(i);
 //                phaser.arriveAndAwaitAdvance();
-                phase = phaser.arrive();
-                System.out.println("Odd2 phase : " + phase);
-                phaser.awaitAdvance(phase);
+//                phase = phaser.arrive();
+//                System.out.println("Odd2 phase : " + phase);
+//                phaser.awaitAdvance(phase);
+                phaser.arriveAndAwaitAdvance();
             }
         };
 
         new Thread(even).start();
-//        new Thread(odd).start();
+        new Thread(odd).start();
 
 //        System.out.println(phaser.getRegisteredParties());
 //        System.out.println(phaser.getUnarrivedParties());

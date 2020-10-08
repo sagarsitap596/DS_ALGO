@@ -1,4 +1,4 @@
-package com.sagar.leetcode.bist;
+package com.sagar.leetcode.bst;
 
 import java.util.Arrays;
 import java.util.List;
